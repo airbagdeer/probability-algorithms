@@ -35,7 +35,12 @@ def q1():
 
 
     if(args.input_word in words_unique_values):
-        file_handling_service.write_output(6, words_unique_values[args.input_word]/len(train_file_words))
-    # print(file_handling_service.get_only_words_in_train_file(args.train_file_name))
+        p_input_word = words_unique_values[args.input_word]/len(train_file_words)
+        file_handling_service.write_output(6, p_input_word)
+    else:
+        file_handling_service.write_output(6, 0)
+
+    #TODO: not sure if this is what was intended:
+    file_handling_service.write_output(7, len(words_unique_values.keys()))
 
 q1()
