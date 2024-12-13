@@ -1,8 +1,21 @@
-#Students Eyal Stolov Michael Chernin 324827328 314950668
-#Output1 develop.txt
-#Output2 test.txt
-#Output3 example
-#Output4 output.txt
-#Output5 300000
-#Output6 8.623235176528076e-05
-#Output7 14086
+#Students	Eyal Stolov	Michael Chernin	324827328	314950668
+#Output1:	develop.txt
+#Output2:	test.txt
+#Output3:	be
+#Output4:	output.txt
+#Output5:	300000
+#Output6:	3.3333333333333333e-06
+#Output7:	422139
+#Output8:	42214
+#Output9:	379925
+#Output10:	20785
+#Output11:	1903
+#Output12:	0.005008883332236626
+#Output13:	0.0
+#Output14:	0.004981891527171871
+#Output15:	2.617777062252048e-07
+#Output16:	161.19232697381108
+#Output17:	149.87781255627917
+#Output18:	141.0879228349774
+#Output19:	1.75
+#Output20:	140.42757371233307
