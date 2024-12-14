@@ -1,6 +1,6 @@
 To run:
 
-``python ex2.py develop.txt test.txt example output.txt``
+``python ex2.py develop.txt test.txt the output.txt``
 
 Where
 

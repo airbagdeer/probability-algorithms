@@ -15,17 +15,9 @@ class File_handler_service:
         words_in_file = []
         with open(train_file_name, "r") as file:
             for line in file:
-                words_split_by_space = line.split()
-                for word in words_split_by_space:
-                    words_in_file.append(word)
-                    #TODO: ask if words like punctuations are ok and if in topics the words with < is ok meanning '<TRAIN'
-
-                    # if '\n' in word:
-                    #     if word != '\n':
-                    #         words_in_file.append(word.replace('\n', ''))
-                    #     else:
-                    #         words_split_by_space.remove(word)
-                    # else:
-                    #     words_in_file.append(word)
-
+                if '<TRAIN' not in line:
+                    words_split_by_space = line.split(' ')
+                    for word in words_split_by_space:
+                        if word != '\n':
+                            words_in_file.append(word)
             return words_in_file
