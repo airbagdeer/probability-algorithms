@@ -18,8 +18,8 @@ V = 300000
 file_handling_service = File_handler_service(args.output_file_name)
 file_handling_service.create_output_file()
 
-def lidstone_smoothing(c_x, _lambda, S_size, X_size):
-    return (c_x + _lambda) / (S_size + _lambda * X_size)
+def lidstone_smoothing(c_x, _lambda, S_size):
+    return (c_x + _lambda) / (S_size + _lambda * V)
 
 def perplexity_measure(s_validation_set, training_words_probabilities, p_unseen_word):
     perplexity = 0
@@ -38,7 +38,7 @@ def lidstone_smoothing_model(training_set, training_events, _lambda):
     training_words_probabilities = {}
 
     for word in training_set:
-        training_words_probabilities[word] = lidstone_smoothing(training_events[word], _lambda, len(training_set), len(training_events))
+        training_words_probabilities[word] = lidstone_smoothing(training_events[word], _lambda, len(training_set))
 
     return training_words_probabilities
 
@@ -86,20 +86,19 @@ def main():
     file_handling_service.write_output(13, p_unseen_word)
 
     _lambda = 0.10
-    training_words_unique_values_size = len(training_words_unique_values.keys())
-    p_lid_input_word = lidstone_smoothing(c_input_word, _lambda, s_training_set_size,training_words_unique_values_size)
+    p_lid_input_word = lidstone_smoothing(c_input_word, _lambda, s_training_set_size)
 
     file_handling_service.write_output(14, p_lid_input_word)
 
     c_unseen_word = 0
-    p_lid_unseen_word = lidstone_smoothing(c_unseen_word, _lambda, s_training_set_size, training_words_unique_values_size)
+    p_lid_unseen_word = lidstone_smoothing(c_unseen_word, _lambda, s_training_set_size)
     file_handling_service.write_output(15, p_lid_unseen_word)
 
     _lambdas = [0.01, 0.10, 1.00]
 
     for index, _lambda in enumerate(_lambdas):
         model = lidstone_smoothing_model(s_training_set, training_words_unique_values, _lambda)
-        p_lid_unseen_word = lidstone_smoothing(c_unseen_word, _lambda, s_training_set_size, training_words_unique_values_size)
+        p_lid_unseen_word = lidstone_smoothing(c_unseen_word, _lambda, s_training_set_size)
         perplexity = perplexity_measure(s_validation_set, model, p_lid_unseen_word)
         file_handling_service.write_output(16+index, perplexity)
 
@@ -108,7 +107,7 @@ def main():
 
     for index, _lambda in enumerate(all_possible_lambdas):
         model = lidstone_smoothing_model(s_training_set, training_words_unique_values, _lambda)
-        p_lid_unseen_word = lidstone_smoothing(c_unseen_word, _lambda, s_training_set_size, training_words_unique_values_size)
+        p_lid_unseen_word = lidstone_smoothing(c_unseen_word, _lambda, s_training_set_size)
         perplexity = perplexity_measure(s_validation_set, model, p_lid_unseen_word)
         perplexities.append((perplexity, _lambda))
 
