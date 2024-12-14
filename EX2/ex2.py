@@ -22,13 +22,16 @@ def lidstone_smoothing(c_x, _lambda, S_size):
     return (c_x + _lambda) / (S_size + _lambda * V)
 
 def perplexity_measure(s_validation_set, training_words_probabilities, p_unseen_word):
+    if len(s_validation_set) == 0:
+        return float('inf')  # Perplexity is undefined for empty sets
+
     perplexity = 0
 
     for word in s_validation_set:
         if word in training_words_probabilities:
-            perplexity = perplexity + math.log(training_words_probabilities[word])
+            perplexity = perplexity + math.log2(training_words_probabilities[word])
         else:
-            perplexity = perplexity + math.log(p_unseen_word)
+            perplexity = perplexity + math.log2(p_unseen_word)
 
     perplexity = math.pow(2, (-1/len(s_validation_set))*perplexity)
 
