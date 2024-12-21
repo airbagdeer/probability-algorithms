@@ -221,6 +221,6 @@ def main():
 
     file_handling_service.write_output_number(29,'')
 
-    for values in zip(f_lambda, f_H, N_T_rs, t_rs):
+    for values in zip(range(10),f_lambda, f_H, N_T_rs, t_rs):
         file_handling_service.write_output_row(values)
 main()
