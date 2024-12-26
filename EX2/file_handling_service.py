@@ -9,7 +9,10 @@ class File_handler_service:
 
     def write_output_number(self, output_number, output_text):
         with open(self.output_file_name, "a") as file:
-            file.write(f'#Output{output_number}:\t{output_text}\n')
+            if(output_number==29):
+                file.write(f'#Output{output_number}\n')
+            else:
+                file.write(f'#Output{output_number}\t{output_text}\n')
 
     def write_output_row(self, elements):
         with open(self.output_file_name, "a") as file:
