@@ -223,4 +223,10 @@ def main():
 
     for values in zip(range(10),f_lambda, f_H, N_T_rs, t_rs):
         file_handling_service.write_output_row(values)
+
+
+    #debugging as requested, to check the sum of probabilities is equal to one:
+    # print(sum(best_lid_model.values()) + best_p_lid_unseen_word*(V-len(best_lid_model.values())))
+    # print(sum(held_out_model.values()) + p_heldout_unseen_word*N_0)
+
 main()
